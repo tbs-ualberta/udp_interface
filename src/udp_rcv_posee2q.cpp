@@ -9,7 +9,7 @@
 #include <tf/transform_broadcaster.h>
 
 geometry_msgs::Quaternion to_quaternion(double x, double y, double z) {
-  
+
   double cz = cos(z * 0.5);
   double sz = sin(z * 0.5);
   double cy = cos(y * 0.5);
@@ -78,9 +78,9 @@ int main(int argc, char **argv) {
     tf::Transform transform;
     transform.setOrigin(
         tf::Vector3(message_dp[0], message_dp[1], message_dp[2]));
-    // FIXME Compiler says below used Quaternion constructor is deprecated.
-    transform.setRotation(
-        tf::Quaternion(message_dp[5], message_dp[4], message_dp[3]));
+    tf::Quaternion q;
+    q.setEuler(message_dp[4], message_dp[3], message_dp[5]);
+    transform.setRotation(q);
     br.sendTransform(
         tf::StampedTransform(transform, time_now, "base_link", "odom"));
 
