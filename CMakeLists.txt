@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   geometry_msgs
   tf
+  rosbag
 )
 
 set(VER_DATA_TRANSMISSION_LIB 0.1.0)
@@ -204,10 +205,14 @@ include_directories(
 
 add_executable(udp_snd_wrench src/udp_snd_wrench.cpp)
 add_executable(udp_rcv_wrench src/udp_rcv_wrench.cpp)
+add_executable(udp_snd_testdelay src/udp_snd_testdelay.cpp)
+add_executable(udp_rcv_testdelay src/udp_rcv_testdelay.cpp)
 add_executable(udp_rcv_posee2q src/udp_rcv_posee2q.cpp)
 #add_executable(tf_pose src/tf_pose.cpp)
 target_link_libraries(udp_snd_wrench ${catkin_LIBRARIES})
 target_link_libraries(udp_rcv_wrench ${catkin_LIBRARIES})
+target_link_libraries(udp_snd_testdelay ${catkin_LIBRARIES})
+target_link_libraries(udp_rcv_testdelay ${catkin_LIBRARIES})
 target_link_libraries(udp_rcv_posee2q ${catkin_LIBRARIES})
 #target_link_libraries(tf_pose ${catkin_LIBRARIES})
 #find_library(
@@ -221,6 +226,14 @@ target_link_libraries(
 )
 target_link_libraries(
   udp_rcv_wrench
+  /usr/local/lib/data_transmission/v${VER_DATA_TRANSMISSION_LIB}/libdata_transmission.a
+)
+target_link_libraries(
+  udp_snd_testdelay
+  /usr/local/lib/data_transmission/v${VER_DATA_TRANSMISSION_LIB}/libdata_transmission.a
+)
+target_link_libraries(
+  udp_rcv_testdelay
   /usr/local/lib/data_transmission/v${VER_DATA_TRANSMISSION_LIB}/libdata_transmission.a
 )
 target_link_libraries(
