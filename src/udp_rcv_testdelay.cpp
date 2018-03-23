@@ -13,7 +13,7 @@ int main(int argc, char **argv) {
   ros::NodeHandle n;
 
   ros::Publisher data_pub =
-      n.advertise<std_msgs::Float64MultiArray>("testdelay", 1);
+      n.advertise<std_msgs::Float64MultiArray>("udp_rcv_testdelay", 1);
 
   // --- Obtain parameters ---
   int rate_hz = 1000;
@@ -42,17 +42,19 @@ int main(int argc, char **argv) {
   // bag.open("testdelay.bag", rosbag::bagmode::Write);
   while (ros::ok()) {
     // TODO Make the below non-blocking (small timeout)
-    transmission.listen(message, 8);
+    transmission.listen(message, sizeof(double) * 2);
     // Convert to double
     double *message_dp = (double *)message;
     // ROS_INFO("%f", (*message_dp));
-    ROS_DEBUG_STREAM_THROTTLE(1, "*message_dp = " << (*message_dp));
+    ROS_DEBUG_STREAM_THROTTLE(1, "*message_dp = " << (message_dp[1]));
     ros::Time time_now = ros::Time::now();
     double time_now_d = double(time_now.sec) + double(time_now.nsec) * 1e-9;
     std_msgs::Float64MultiArray msg_array;
     // Clear array
     msg_array.data.clear();
-    msg_array.data.push_back(message_dp[0]);
+    for (int i = 0; i < 2; i++) {
+      msg_array.data.push_back(message_dp[i]);
+    }
     msg_array.data.push_back(time_now_d);
 
     // bag.write("times", time_now, message_final_ip);
