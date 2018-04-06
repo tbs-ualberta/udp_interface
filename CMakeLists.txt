@@ -15,7 +15,7 @@ find_package(catkin REQUIRED COMPONENTS
   rosbag
 )
 
-set(VER_DATA_TRANSMISSION_LIB 0.1.0)
+set(VER_DATA_TRANSMISSION_LIB 0.2.0)
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)

@@ -29,12 +29,14 @@ int main(int argc, char **argv) {
     ROS_ERROR("Parameter \"port_loc\" not provided. Exiting.");
     ros::shutdown();
   }
+  int rcvbuf_len = 10;
+  n.getParam("udp_rcv_testdelay/rcvbuf_len", rcvbuf_len);
 
   // --- Setup the transmission ---
   data_transmission transmission;
   char ip_local_scp[1024];
   strcpy(ip_local_scp, ip_local_st.c_str());
-  transmission.init_transmission(ip_local_scp, port_local_si);
+  transmission.init_transmission(ip_local_scp, port_local_si, rcvbuf_len);
   char message[1024];
 
   // --- Setup rosbag ---
