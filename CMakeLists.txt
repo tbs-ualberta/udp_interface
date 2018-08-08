@@ -106,13 +106,13 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(udp_snd_wrench src/udp_snd_wrench.cpp)
-add_executable(udp_rcv_wrench src/udp_rcv_wrench.cpp)
-add_executable(udp_snd_testdelay src/udp_snd_testdelay.cpp)
-add_executable(udp_rcv_testdelay src/udp_rcv_testdelay.cpp)
-add_executable(udp_rcv_posee2q src/udp_rcv_posee2q.cpp)
-add_executable(udp_rcv_array src/udp_rcv_array.cpp)
-add_executable(udp_snd_array src/udp_snd_array.cpp)
+add_executable(udp_snd_wrench src/udp_snd_wrench_node.cpp)
+add_executable(udp_rcv_wrench src/udp_rcv_wrench_node.cpp)
+add_executable(udp_snd_testdelay src/udp_snd_testdelay_node.cpp)
+add_executable(udp_rcv_testdelay src/udp_rcv_testdelay_node.cpp)
+add_executable(udp_rcv_posee2q src/udp_rcv_posee2q_node.cpp)
+add_executable(udp_rcv_array src/udp_rcv_array_node.cpp)
+add_executable(udp_snd_array src/udp_snd_array_node.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(udp_snd_wrench

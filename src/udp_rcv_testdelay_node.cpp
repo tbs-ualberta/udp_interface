@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv) {
 
-  ros::init(argc, argv, "udp_interface");
+  ros::init(argc, argv, "udp_rcv_testdelay");
   ros::NodeHandle n;
 
   ros::Publisher data_pub =
@@ -29,14 +29,14 @@ int main(int argc, char **argv) {
     ROS_ERROR("Parameter \"port_loc\" not provided. Exiting.");
     ros::shutdown();
   }
-  int rcvbuf_len = 10;
-  n.getParam("udp_rcv_testdelay/rcvbuf_len", rcvbuf_len);
+  int len_rcvbuf = 10;
+  n.getParam("udp_rcv_testdelay/len_rcvbuf", len_rcvbuf);
 
   // --- Setup the transmission ---
   data_transmission transmission;
   char ip_local_scp[1024];
   strcpy(ip_local_scp, ip_local_st.c_str());
-  transmission.init_transmission(ip_local_scp, port_local_si, rcvbuf_len);
+  transmission.init_transmission(ip_local_scp, port_local_si, len_rcvbuf);
   char message[1024];
 
   // --- Setup rosbag ---

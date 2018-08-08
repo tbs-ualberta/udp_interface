@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "udp_snd_array");
   ros::NodeHandle n;
 
-  ros::Subscriber data_sub = n.subscribe("array", 1, dataCallback);
+  ros::Subscriber data_sub = n.subscribe("data", 1, dataCallback);
 
   // --- Obtain parameters ---
   int rate_hz = 1000;

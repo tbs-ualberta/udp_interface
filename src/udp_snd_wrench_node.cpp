@@ -22,7 +22,7 @@ void dataCallback(const geometry_msgs::WrenchStamped::ConstPtr &msg) {
 
 int main(int argc, char **argv) {
 
-  ros::init(argc, argv, "udp_interface");
+  ros::init(argc, argv, "udp_snd_wrench");
   ros::NodeHandle n;
 
   ros::Subscriber sub = n.subscribe("ft", 1, dataCallback);

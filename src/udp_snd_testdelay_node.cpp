@@ -8,7 +8,7 @@
 
 int main(int argc, char **argv) {
 
-  ros::init(argc, argv, "udp_interface");
+  ros::init(argc, argv, "udp_snd_testdelay");
   ros::NodeHandle n;
 
   ros::Publisher data_pub =
