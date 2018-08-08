@@ -111,6 +111,8 @@ add_executable(udp_rcv_wrench src/udp_rcv_wrench.cpp)
 add_executable(udp_snd_testdelay src/udp_snd_testdelay.cpp)
 add_executable(udp_rcv_testdelay src/udp_rcv_testdelay.cpp)
 add_executable(udp_rcv_posee2q src/udp_rcv_posee2q.cpp)
+add_executable(udp_rcv_array src/udp_rcv_array.cpp)
+add_executable(udp_snd_array src/udp_snd_array.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(udp_snd_wrench
@@ -130,6 +132,14 @@ target_link_libraries(udp_rcv_testdelay
   /usr/local/lib/libdata_transmission.a
 )
 target_link_libraries(udp_rcv_posee2q
+  ${catkin_LIBRARIES}
+  /usr/local/lib/libdata_transmission.a
+)
+target_link_libraries(udp_rcv_array
+  ${catkin_LIBRARIES}
+  /usr/local/lib/libdata_transmission.a
+)
+target_link_libraries(udp_snd_array
   ${catkin_LIBRARIES}
   /usr/local/lib/libdata_transmission.a
 )
