@@ -2,7 +2,7 @@ A ROS package providing a data interface to arbitrary non-ROS software and
 hardware interfaces via the UDP protocol. Implemented nodes can handle various
 message structures (see below).   
 
-The package is still under development and thus rather unstable.
+The package is still under development and therefore rather unstable.
 
 #### Nodes:
 - **udp_rcv_posee2q**:
@@ -11,12 +11,22 @@ The package is still under development and thus rather unstable.
     - *rate*: Sampling rate [Hz] (``int``)
     - *ip_loc*: Local IP address ["0.0.0.0"] (``String``)
     - *port_loc*: Local port (``int``)
+    - *len_rcvbuf*: Length of the UDP socket's receive buffer (SO_RCVBUF)
 - **udp_rcv_wrench**:
   - Receives a 6-element array ([fx fy fz tx ty tz]), converts the data to ``geometry_msgs/WrenchStamped``-messages and publishes to topic "ft".
   - *Parameters*:
     - *rate*: Sampling rate [Hz] (``int``)
     - *ip_loc*: Local IP address ["0.0.0.0"] (``String``)
     - *port_loc*: Local port (``int``)
+    - *len_rcvbuf*: Length of the UDP socket's receive buffer (SO_RCVBUF)
+- **udp_rcv_array**:
+  - Receives an array of doubles of arbitrary length (provided in parameters), converts the data to ``std_msgs/Float64MultiArray``-messages and publishes to topic "data".
+  - *Parameters*:
+    - *rate*: Sampling rate [Hz] (``int``)
+    - *ip_loc*: Local IP address ["0.0.0.0"] (``String``)
+    - *port_loc*: Local port (``int``)
+    - *len_rcvbuf*: Length of the UDP socket's receive buffer (SO_RCVBUF)
+    - *len_array*: Length of the received data array
 - **udp_snd_wrench**:
   - Sends a 6-element array ([fx fy fz tx ty tz]) converted from ``geometry_msgs/WrenchStamped``-messages obtained from topic "ft".
   - *Parameters*:
@@ -25,6 +35,15 @@ The package is still under development and thus rather unstable.
     - *port_rem*: Remote port (``int``)
     - *ip_loc*: Local IP address ["0.0.0.0"] (``String``)
     - *port_loc*: Local port (``int``)
+- **udp_snd_array**:
+  - Sends an array of doubles of arbitrary length (provided in parameters), converts the data to ``std_msgs/Float64MultiArray``-messages obtained from topic "data".
+  - *Parameters*:
+    - *rate*: Sampling rate [Hz] (``int``)
+    - *ip_rem*: Remote IP address ["0.0.0.0"] (``String``)
+    - *port_rem*: Remote port (``int``)
+    - *ip_loc*: Local IP address ["0.0.0.0"] (``String``)
+    - *port_loc*: Local port (``int``)
+    - *len_array*: Length of the sent data array
 
 #### Dependencies:
 - https://github.com/tbs-ualberta/data_transmission.git  
