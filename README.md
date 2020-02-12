@@ -27,6 +27,10 @@ The package is still under development and therefore rather unstable.
     - *port_loc*: Local port (``int``)
     - *len_rcvbuf*: Length of the UDP socket's receive buffer (SO_RCVBUF)
     - *len_array*: Length of the received data array
+  For instace, to recieve an array of double of size 8, one can use the command below:
+  ```bash
+  rosrun udp_interface udp_rcv_array _ip_loc:="192.1.1.1" _port_loc:=43000 _len_array:=8
+  ```
 - **udp_snd_wrench**:
   - Sends a 6-element array ([fx fy fz tx ty tz]) converted from ``geometry_msgs/WrenchStamped``-messages obtained from topic "ft".
   - *Parameters*:
